@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Stalker forces</h1>
+    <form id = "form">
+        <label for="stalk">Handles of who you want to stalk (separated by space):</label><br>
+        <input type="text" id="stalk" name="stalk" value = "NaimSS tdas"><br>
+        <label for="you">Handles of you and your team (separated by space):</label><br>
+        <input type="text" id="you" name="you" value = "brunomont morato"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        function parseString(s){
+            v = [];
+            let pos = 0;
+            for(var i=0;i<s.length;){
+                
+
+                t = "";
+                while(i < s.length && s[i]!=' '){
+                    t = t + s[i];
+                    i++;
+                }
+
+                i++;
+                v[pos] = t;
+                pos++;
+            }
+            return v;
+        }
+
+        function logSubmit(event) {
+            event.preventDefault();
+            localStorage.clear();
+            let s1 = document.getElementById('stalk').value;
+            let s2 = document.getElementById('you').value;
+
+            let v1 = parseString(s1),v2 = parseString(s2);
+            
+            //console.log(v1);
+            //console.log(v2);
+            
+            localStorage.clear();
+            localStorage.setItem('stalk',JSON.stringify(v1));
+            localStorage.setItem('you',JSON.stringify(v2));
+            
+
+            location.replace('/handle.html')
+        }
+
+        const form = document.getElementById('form');
+        form.addEventListener('submit', logSubmit);
+    </script>
+
+
+</body>
+</html>
