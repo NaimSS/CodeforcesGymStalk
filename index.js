@@ -81,11 +81,14 @@ function main(gyms){
 async function retornaGyms(){
     return await sendRequest('https://codeforces.com/api/contest.list?gym=true');
 }
-
-retornaGyms().then(
-      gyms =>{
-        console.log("entra");
-        main(gyms);
-        console.log("sai");
-    }
-);
+function runScript(){ 
+    document.writeln("Please Wait");
+    
+    retornaGyms().then(
+        gyms =>{
+            console.log("entra");
+            main(gyms);
+            console.log("sai");
+        }
+    );
+}
