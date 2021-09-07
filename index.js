@@ -44,8 +44,8 @@ async function getGyms(v,gyms){
     return mapa;
 }
 
-function gymUrl(id){
-    return "https://codeforces.com/gym/" + id+"<br>";
+function gymUrl(id,name){
+    return "<p><a href = " + '"' + "https://codeforces.com/gym/" + id + '"' + ">" + name +"</a><br><p>";
 }
 
 function main(gyms){
@@ -55,6 +55,11 @@ function main(gyms){
 
     console.log(v1);
     console.log(v2);
+
+    const nomes = new Map();
+    for(const obj of gyms.result){
+        nomes.set(obj.id,obj.name);
+    }
 
     getGyms(v1,gyms.result).then(
         mapa1 =>{
@@ -67,7 +72,7 @@ function main(gyms){
 
                         if(mapa2.get(key)==undefined){
                             // nice :)
-                            document.write(gymUrl(key));
+                            document.write(gymUrl(key,nomes.get(key)));
                         }
                     }
 
